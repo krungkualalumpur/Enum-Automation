@@ -1,0 +1,7 @@
+{
+    "LapType" : ["Linear", "Loop"],
+    "RaceType" : ["Freeroam", "Constraint"],
+    "LapVisualType" : ["Type1", "Type2"],
+    "CheckpointVisualType" : ["Type1", "Type2"]
+
+}
