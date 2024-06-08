@@ -1,4 +1,5 @@
 # Enum-Automation
+A handy tool to create custom luau enumerations!
 Setup the hierarchy of the enumeration under the json file named "input.json"
 
 Run the script in command, preferrably using bash, by typing:
