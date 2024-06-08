@@ -6,6 +6,7 @@ input_file = sys.argv[1]
 output_file = sys.argv[2]
 
 with open(output_file, 'w') as outputFile:
+    outputFile.write("--This is an auto generated script, please do not modify this!\n")
     outputFile.write("--!strict")
     outputFile.write("\n--services")
     outputFile.write("\n--packages")
