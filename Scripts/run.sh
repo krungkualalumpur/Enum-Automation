@@ -1,2 +1,2 @@
 #!/bin/bash
-python Scripts/EnumAutomation.py input.json "$1"
+python Scripts/EnumAutomation.py "$1" "$2"
