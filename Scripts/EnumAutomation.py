@@ -1,8 +1,9 @@
 import json
+import sys
 import pandas
 
-input_file = "input.json"
-output_file = "Enum.lua"
+input_file = sys.argv[1]
+output_file = sys.argv[2]
 
 with open(output_file, 'w') as outputFile:
     outputFile.write("--!strict")
