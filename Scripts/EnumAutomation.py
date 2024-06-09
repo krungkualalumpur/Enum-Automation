@@ -15,7 +15,7 @@ with open(output_file, 'w') as outputFile:
 
     outputFile.write("\nexport type CustomEnum <N> = {\n\tName : N,\n\tGetEnumItems : (self : CustomEnum<N>) -> {[number] : CustomEnumItem<CustomEnum<N>, string>}\n}\n")
     #outputFile.write("\nexport type CustomEnumItem <E, N> = {\n\tName : N,\n\tValue : number,\n\tEnumType : E\n}\n")
-    outputFile.write("\nexport type CustomEnumItem <E, N> = {\n\tName : string,\n\tValue : number,\n\tEnumType : E\n}\n")
+    outputFile.write("\nexport type CustomEnumItem <E, N> = {\n\tName : N,\n\tValue : number,\n\tEnumType : E\n}\n")
 
     with open(input_file, 'r') as inputFile:
         content = inputFile.read()
@@ -57,7 +57,7 @@ with open(output_file, 'w') as outputFile:
             num = 1 
             content = tupleFromJSON[k] 
             outputFile.write("\nlocal " + k + " = " + "{")
-            outputFile.write("\n\t" + 'Name = "' + k + '" :: any,')
+            outputFile.write("\n\t" + 'Name = "' + k + '",')
             outputFile.write("\n\t" + 'GetEnumItems = function(self)')  
             outputFile.write('\n\t\tlocal t = {}\n\t\tfor _,v in pairs(self) do\n\t\t\tif type(v) == "table" then \n\t\t\t\t table.insert(t, v)  \n\t\t\tend\n\t\tend')  
             outputFile.write('\n\t\treturn t\n\tend,')  
@@ -66,7 +66,7 @@ with open(output_file, 'w') as outputFile:
             #print(k, content)
             for val in content:
                 outputFile.write("\n" + k + "." + val + " = {")
-                outputFile.write("\n\t" + 'Name = "' + val + '" :: any,')
+                outputFile.write("\n\t" + 'Name = "' + val + '",')
                 outputFile.write("\n\t" + 'Value = ' + str(num) + ',')    
                 outputFile.write("\n\t" + 'EnumType = ' + k)
                 outputFile.write("\n}\n")
