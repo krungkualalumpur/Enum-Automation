@@ -13,17 +13,22 @@ with open(output_file, 'w') as outputFile:
     outputFile.write("\n--modules")
     outputFile.write("\n--types")
 
-    outputFile.write("\nexport type CustomEnum <N> = {\n\tName : N,\n\tGetEnumItems : (self : CustomEnum<N>) -> {[number] : CustomEnumItem<CustomEnum<N>, string>}\n}\n")
+    outputFile.write("\ntype CustomEnum <N> = {\n\tName : N,\n\tGetEnumItems : (self : CustomEnum<N>) -> {[number] : CustomEnumItem<CustomEnum<N>, string>}\n}\n")
     #outputFile.write("\nexport type CustomEnumItem <E, N> = {\n\tName : N,\n\tValue : number,\n\tEnumType : E\n}\n")
-    outputFile.write("\nexport type CustomEnumItem <E, N> = {\n\tName : N,\n\tValue : number,\n\tEnumType : E\n}\n")
+    outputFile.write("\ntype CustomEnumItem <E, N> = {\n\tName : N,\n\tValue : number,\n\tEnumType : E\n}\n")
 
     with open(input_file, 'r') as inputFile:
         content = inputFile.read()
         tupleFromJSON = json.loads(content)
         for k in tupleFromJSON:
             content = tupleFromJSON[k]
+
+            contentInStringOfOrs = "|".join(f'"{val}"' for val in content)
+            
             outputFile.write("type " + k + "Enum = " + 'CustomEnum<"' + k + '">\n')
-            outputFile.write("export type " + k + ' = CustomEnumItem<' + k + 'Enum, string>\n\n')
+            outputFile.write("export type " + k + ' = CustomEnumItem<' + k + 'Enum, '
+             + contentInStringOfOrs +
+            '>\n\n')
             #for val in content:
                 #outputFile.write("\n\t" + val + " : {")
                 #outputFile.write("\n\t\t" + 'Name : "' + val + '",')
